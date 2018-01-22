@@ -2,7 +2,7 @@
 
 ## Installation
 ```{bash}
-git clone <repo>
+git clone https://git@github.com:Daniel-Houston/dotfiles.git
 cd dotfiles 
 ./setup.sh
 ```
