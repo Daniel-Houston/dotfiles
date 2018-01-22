@@ -5,7 +5,6 @@ CWD=$(pwd)
 ln -is $CWD/dev-tmux.sh ~/.dev-tmux.sh
 ln -is $CWD/bashrc ~/.bashrc
 ln -is $CWD/vimrc ~/.vimrc
-ln -is $CWD/workrc ~/.workrc
 ln -is $CWD/git-prompt.sh ~/.git-prompt.sh
 ln -is $CWD/sleeplock.sh ~/.sleeplock.sh
 ln -is $CWD/tmux.conf ~/.tmux.conf

@@ -86,7 +86,7 @@ alias gnew='git checkout -b'
 alias keyfix="ibus-daemon -rd"
 
 # Dotfiles Directory
-DOTFILES=~/Development/personal
+DOTFILES=~/Development/dotfiles
 alias dots='cd '$DOTFILES
 
 gitStatusDots() {
