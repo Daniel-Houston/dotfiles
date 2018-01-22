@@ -134,5 +134,5 @@ searchForText() {
 }
 alias src-grep=searchForText
 
-# Turn off ctrl+s ctrl+q for terminal
+# Turn off ctrl+s ctrl+q for terminal. This helps vim stuff
 stty -ixon
