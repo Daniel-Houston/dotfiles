@@ -134,8 +134,8 @@ set colorcolumn=120
 set autowrite
 
 " Relative and Absolute Line Numbers
-set number relativenumber
-nnoremap <Leader>n :set relativenumber!<CR>
+set relativenumber
+nnoremap <F5> :set relativenumber!<CR>:set number!<CR>
 
 if has("autocmd")
 
@@ -149,11 +149,12 @@ if has("autocmd")
   augroup END
 
   " Toggle line number types depending on events
-  augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  augroup END
+  " This does not work as expected 
+  " augroup numbertoggle
+   " autocmd!
+   " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+   " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  " augroup END
 
 endif " has("autocmd")
 
@@ -221,7 +222,7 @@ map <space> <Leader>
 set hidden
 
 " Show all tabs and trailing whitespace
-"set list
+set list
 "set listchars=tab:>-,trail:-
 
 " Navigate split buffers with C-hjkl
