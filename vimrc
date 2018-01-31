@@ -5,16 +5,27 @@ if v:progname =~? "evim"
 endif
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+if filereadable("$VIMRUNTIME/defaults.vim")
+  source $VIMRUNTIME/defaults.vim
+endif
 
+if empty(glob('~/.vim/swapfiles'))
+  silent !mkdir -p $HOME . '.vim/swapfiles' > /dev/null 2>&1
+endif
 set directory=~/.vim/swapfiles
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
+  if empty(glob('~/.vim/backupdir'))
+    silent !mkdir -p $HOME . '.vim/backupdir' > /dev/null 2>&1
+  endif
   set backup		" keep a backup file (restore to previous version)
   set backupdir=~/.vim/backupdir
   if has('persistent_undo')
+    if empty(glob('~/.vim/undodir'))
+      silent !mkdir -p $HOME . '.vim/undodir' > /dev/null 2>&1
+    endif
     set undofile	" keep an undo file (undo changes after closing)
     set undodir=~/.vim/undodir " Specify the directory for undo files
   endif
