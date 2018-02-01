@@ -9,25 +9,22 @@ if filereadable("$VIMRUNTIME/defaults.vim")
   source $VIMRUNTIME/defaults.vim
 endif
 
-if empty(glob('~/.vim/swapfiles'))
-  silent !mkdir -p $HOME . '.vim/swapfiles' > /dev/null 2>&1
+if isdirectory($HOME . '/.vim/swapfiles')
+  set directory=~/.vim/swapfiles
 endif
-set directory=~/.vim/swapfiles
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
-  if empty(glob('~/.vim/backupdir'))
-    silent !mkdir -p $HOME . '.vim/backupdir' > /dev/null 2>&1
+  if isdirectory($HOME . '/.vim/backupdir')
+    set backup		" keep a backup file (restore to previous version)
+    set backupdir=~/.vim/backupdir
   endif
-  set backup		" keep a backup file (restore to previous version)
-  set backupdir=~/.vim/backupdir
   if has('persistent_undo')
-    if empty(glob('~/.vim/undodir'))
-      silent !mkdir -p $HOME . '.vim/undodir' > /dev/null 2>&1
+    if isdirectory($HOME . '/.vim/undodir')
+      set undofile	" keep an undo file (undo changes after closing)
+      set undodir=~/.vim/undodir " Specify the directory for undo files
     endif
-    set undofile	" keep an undo file (undo changes after closing)
-    set undodir=~/.vim/undodir " Specify the directory for undo files
   endif
 endif
 
@@ -50,68 +47,71 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-"
-Plugin 'posva/vim-vue'
+  " The following are examples of different formats supported.
+  " Keep Plugin commands between vundle#begin/end.
+  " plugin on GitHub repo
+  Plugin 'tpope/vim-fugitive'
+  " plugin from http://vim-scripts.org/vim/scripts.html
+  " Plugin 'L9'
+  " Git plugin not hosted on GitHub
+  Plugin 'git://git.wincent.com/command-t.git'
+  " git repos on your local machine (i.e. when working on your own plugin)
+  " Plugin 'file:///home/gmarik/path/to/plugin'
+  " The sparkup vim script is in a subdirectory of this repo called vim.
+  " Pass the path to set the runtimepath properly.
+  "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  " Install L9 and avoid a Naming conflict if you've already installed a
+  " different version somewhere else.
+  " Plugin 'ascenator/L9', {'name': 'newL9'}
+  "
+  Plugin 'posva/vim-vue'
 
-" NerdTree
-Plugin 'scrooloose/nerdtree'
+  " NerdTree
+  Plugin 'scrooloose/nerdtree'
 
-" Syntastic
-Plugin 'vim-syntastic/syntastic'
+  " Syntastic
+  Plugin 'vim-syntastic/syntastic'
 
-" Omni Complete Automatic Popup
-Plugin 'vim-scripts/AutoComplPop'
+  " Omni Complete Automatic Popup
+  Plugin 'vim-scripts/AutoComplPop'
 
-" vim-go 
-Plugin 'fatih/vim-go'
+  " vim-go 
+  Plugin 'fatih/vim-go'
 
-" Vim Airline
-Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+  " Vim Airline
+  Plugin 'vim-airline/vim-airline'
+  " Plugin 'vim-airline/vim-airline-themes'
 
-Plugin 'airblade/vim-gitgutter'
+  Plugin 'airblade/vim-gitgutter'
 
-"CtrlP
-Plugin 'kien/ctrlp.vim'
+  "CtrlP
+  Plugin 'kien/ctrlp.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+  " All of your Plugins must be added before the following line
+  call vundle#end()            " required
+  filetype plugin indent on    " required
+  " To ignore plugin indent changes, instead use:
+  "filetype plugin on
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+  " Brief help
+  " :PluginList       - lists configured plugins
+  " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+  " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+  " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" see :h vundle for more details or wiki for FAQ
+  " see :h vundle for more details or wiki for FAQ
+endif
+
 " Put your non-Plugin stuff after this line
 
 " Abbreviations
@@ -243,63 +243,71 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
-" Uncomment to close vim when all open buffers are closed
-"   (even if NERDTree is open)
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+if exists(":NERDTreeToggle")
+  map <C-n> :NERDTreeToggle<CR>
+  " Uncomment to close vim when all open buffers are closed
+  "   (even if NERDTree is open)
+  " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endif
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+if exists(":SyntasticInfo")
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  " let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 
-" Syntastic checker configuration 
-let g:syntastic_java_checkers = ["javac", "checkstyle"]
-let g:syntastic_javascript_checkers= ["eslint"]
-let g:syntastic_go_checkers= ["golint"]
-let g:syntastic_sql_checkers= ["sqlint"]
-let g:syntastic_html_checkers=["eslint"]
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_id_checkers = 0
+  " Syntastic checker configuration 
+  let g:syntastic_java_checkers = ["javac", "checkstyle"]
+  let g:syntastic_javascript_checkers= ["eslint"]
+  let g:syntastic_go_checkers= ["golint"]
+  let g:syntastic_sql_checkers= ["sqlint"]
+  let g:syntastic_html_checkers=["eslint"]
+  let g:syntastic_aggregate_errors = 1
+  let g:syntastic_id_checkers = 0
+endif
 
 " Ctrl P
-nnoremap \p :CtrlP<CR>
-let g:ctrlp_custom_ignore = {
-   \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node)$',
-   \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
-   \ }
-   "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+if exists(":CtrlP")
+  nnoremap \p :CtrlP<CR>
+  let g:ctrlp_custom_ignore = {
+     \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node)$',
+     \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
+     \ }
+     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
+  let g:ctrlp_max_files=0
+  let g:ctrlp_max_depth=40
+endif
 
 " vim-go
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+if exists(":GoBuild")
+  map <C-n> :cnext<CR>
+  map <C-m> :cprevious<CR>
+  nnoremap <leader>a :cclose<CR>
 
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0,1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+  " run :GoBuild or :GoTestCompile based on the go file
+  function! s:build_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+      call go#test#Test(0,1)
+    elseif l:file =~# '^\f\+\.go$'
+      call go#cmd#Build(0)
+    endif
+  endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 
-" Set all error lists to be quickfix
-" let g:go_list_type = 'quickfix'
-"
-" Set :GoTest timeout value
-" let g:go_test_timeout = '10s'
+  " Set all error lists to be quickfix
+  " let g:go_list_type = 'quickfix'
+  "
+  " Set :GoTest timeout value
+  " let g:go_test_timeout = '10s'
+endif
