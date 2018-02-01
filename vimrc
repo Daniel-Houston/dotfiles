@@ -10,7 +10,7 @@ if filereadable("$VIMRUNTIME/defaults.vim")
 endif
 
 if isdirectory($HOME . '/.vim/swapfiles')
-  set directory=~/.vim/swapfiles
+  set directory=$HOME/.vim/swapfiles
 endif
 
 if has("vms")
@@ -18,12 +18,12 @@ if has("vms")
 else
   if isdirectory($HOME . '/.vim/backupdir')
     set backup		" keep a backup file (restore to previous version)
-    set backupdir=~/.vim/backupdir
+    set backupdir=$HOME/.vim/backupdir
   endif
   if has('persistent_undo')
     if isdirectory($HOME . '/.vim/undodir')
       set undofile	" keep an undo file (undo changes after closing)
-      set undodir=~/.vim/undodir " Specify the directory for undo files
+      set undodir=$HOME/.vim/undodir " Specify the directory for undo files
     endif
   endif
 endif
@@ -49,7 +49,7 @@ filetype off                  " required
 
 if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
+  set rtp+=$HOME/.vim/bundle/Vundle.vim
   call vundle#begin()
   " alternatively, pass a path where Vundle should install plugins
   "call vundle#begin('~/some/path/here')
