@@ -245,15 +245,15 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " NERDTree
-if exists(":NERDTreeToggle")
+" if exists(":NERDTreeToggle")
   map <C-n> :NERDTreeToggle<CR>
   " Uncomment to close vim when all open buffers are closed
   "   (even if NERDTree is open)
   " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-endif
+"endif
 
 " Syntastic
-if exists(":SyntasticInfo")
+" if exists(":SyntasticInfo")
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -271,23 +271,23 @@ if exists(":SyntasticInfo")
   let g:syntastic_html_checkers=["eslint"]
   let g:syntastic_aggregate_errors = 1
   let g:syntastic_id_checkers = 0
-endif
+"endif
 
 " Ctrl P
-if exists(":CtrlP")
+"if exists(":CtrlP")
   nnoremap \p :CtrlP<CR>
   let g:ctrlp_custom_ignore = {
-     \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node)$',
+     \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node|build)$',
      \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
      \ }
      "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 
   let g:ctrlp_max_files=0
   let g:ctrlp_max_depth=40
-endif
+"endif
 
 " vim-go
-if exists(":GoBuild")
+"if exists(":GoBuild")
   map <C-n> :cnext<CR>
   map <C-m> :cprevious<CR>
   nnoremap <leader>a :cclose<CR>
@@ -313,4 +313,4 @@ if exists(":GoBuild")
   "
   " Set :GoTest timeout value
   " let g:go_test_timeout = '10s'
-endif
+"endif
