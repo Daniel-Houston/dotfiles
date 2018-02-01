@@ -144,6 +144,8 @@ set laststatus=2
 set colorcolumn=120
 set autowrite
 
+hi Search ctermbg=DarkBlue ctermfg=LightGray
+
 " Relative and Absolute Line Numbers
 set relativenumber
 nnoremap <F5> :set relativenumber!<CR>:set number!<CR>
@@ -289,6 +291,7 @@ if exists(":GoBuild")
   map <C-n> :cnext<CR>
   map <C-m> :cprevious<CR>
   nnoremap <leader>a :cclose<CR>
+  let g:go_fmt_command = "goimports"
 
   " run :GoBuild or :GoTestCompile based on the go file
   function! s:build_go_files()
