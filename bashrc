@@ -36,8 +36,8 @@ export IDEA_HOME=~/Util/idea-IU-173.3727.127/
 export IDEA_BIN=$IDEA_HOME/bin
 export PATH=$IDEA_BIN:$PATH
 
-alias ls="ls --color=auto"
-alias ll="ls -la --color=auto"
+alias ls="ls -G"
+alias ll="ls -laG"
 alias cd..="cd .."
 
 # Easy way to travel up a directory

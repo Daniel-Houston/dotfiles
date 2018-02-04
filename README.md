@@ -1,4 +1,6 @@
 # Dotfiles
+## Notes
+This setup requires bash version > 4.0 and vim version > 8.0
 
 ## Installation
 ```{bash}

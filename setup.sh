@@ -1,4 +1,4 @@
-#/usr/bin/sh
+#!/usr/bin/env bash
 CWD=$(pwd)
 
 # Create symlinks
@@ -24,19 +24,25 @@ if [ ! -d $HOME/.vim/bundle/Vundle.vim ] ; then
   fi
 fi
 
-read -r -p "Set up swapfiles in "$HOME"/.vim/swapfiles? [y/n]" response
-response=${response,,}  #toLower
-if [[ "$response" =~ ^(yes|y)$ ]] ; then
-  mkdir -p $HOME/.vim/swapfiles
+if [ ! -d $HOME/.vim/swapfiles ] ; then
+  read -r -p "Set up swapfiles in "$HOME"/.vim/swapfiles? [y/n] " response
+  response=${response,,}  #toLower
+  if [[ "$response" =~ ^(yes|y)$ ]] ; then
+    mkdir -p $HOME/.vim/swapfiles
+  fi
 fi
-read -r -p "Set up undodir in "$HOME"/.vim/undodir? [y/n]" response
-response=${response,,}  #toLower
-if [[ "$response" =~ ^(yes|y)$ ]] ; then
-  mkdir -p $HOME/.vim/undodir
+if [ ! -d $HOME/.vim/undodir ] ; then
+  read -r -p "Set up undodir in "$HOME"/.vim/undodir? [y/n] " response
+  response=${response,,}  #toLower
+  if [[ "$response" =~ ^(yes|y)$ ]] ; then
+    mkdir -p $HOME/.vim/undodir
+  fi
 fi
-read -r -p "Set up swapfiles in "$HOME"/.vim/backupdir? [y/n]" response
-response=${response,,}  #toLower
-if [[ "$response" =~ ^(yes|y)$ ]] ; then
-  mkdir -p $HOME/.vim/backupdir
+if [ ! -d $HOME/.vim/backupdir ] ; then
+  read -r -p "Set up backupdir in "$HOME"/.vim/backupdir? [y/n] " response
+  response=${response,,}  #toLower
+  if [[ "$response" =~ ^(yes|y)$ ]] ; then
+    mkdir -p $HOME/.vim/backupdir
+  fi
 fi
 echo "Finished setup of dotfiles"
