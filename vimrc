@@ -176,7 +176,7 @@ set splitright
 set splitbelow
 
 " Tell vim I'm writing on a dark background
-"set background=dark
+set background=dark
 
 " Don't wrap lines longer than the view
 set nowrap
@@ -235,14 +235,19 @@ map <space> <Leader>
 set hidden
 
 " Show all tabs and trailing whitespace
-set list
-"set listchars=tab:>-,trail:-
+" See https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
+" set list
+map <F6> :set invlist<CR>
+set listchars=tab:␉⎵,trail:␠,eol:⏎
 
 " Navigate split buffers with C-hjkl
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" Navigate to mru buffer with C-Tab
+map <Leader><Tab> <C-^>
 
 " NERDTree
 " if exists(":NERDTreeToggle")
