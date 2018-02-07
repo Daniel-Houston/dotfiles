@@ -133,8 +133,9 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
 syntax enable
 set t_Co=256
-set expandtab
-set shiftwidth=2
+"set expandtab
+"set shiftwidth=2
+"set shiftwidth=1
 set smartindent
 set ignorecase
 set smartcase
@@ -202,10 +203,6 @@ set ruler
 "type the character to find and "2f" is displayed.  When you press "w" next,
 "the "2fw" command is executed and the displayed "2f" is removed.
 set showcmd
-
-" Tab size 2 spaces
-set tabstop=2
-"set shiftwidth=1
 
 " Onmi Completion
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
@@ -312,6 +309,7 @@ map <Leader><Tab> <C-^>
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>d :GoDocBroswer
 
   " Set all error lists to be quickfix
   " let g:go_list_type = 'quickfix'
