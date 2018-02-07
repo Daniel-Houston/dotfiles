@@ -50,7 +50,8 @@ alias .5='cd ../../../../..'
 
 # tmux kill session
 alias tkill='tmux kill-session -t'
-alias tdev='~/.dev-tmux.sh'
+alias tgo='~/.dev-tmux.sh golang'
+alias tjava='~/.dev-tmux.sh java'
 
 # Grep
 alias grep='grep --color=auto'
