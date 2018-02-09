@@ -286,6 +286,7 @@ map <Leader><Tab> <C-^>
 
   let g:ctrlp_max_files=0
   let g:ctrlp_max_depth=40
+  let g:ctrlp_show_hidden=1
 "endif
 
 " vim-go
@@ -309,7 +310,7 @@ map <Leader><Tab> <C-^>
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <Leader>d :GoDocBroswer
+  autocmd FileType go nmap <Leader>d :GoDocBrowser
 
   " Set all error lists to be quickfix
   " let g:go_list_type = 'quickfix'
