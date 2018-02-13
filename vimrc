@@ -97,6 +97,9 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   "CtrlP
   Plugin 'kien/ctrlp.vim'
 
+  " JSBeautify
+  Plugin 'maksimr/vim-jsbeautify'
+
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
