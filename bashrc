@@ -1,5 +1,3 @@
-# .bashrc
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -27,7 +25,7 @@ export PATH=/usr/local/apache-maven-3.5.2/bin:$PATH
 # Go
 #export GOROOT=/usr/local/go
 export PATH=$PATH:/usr/local/go/bin
-# export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 # I have been told it is a bad idea to change your GOPATH
 # export GOPATH=/home/dhouston/Development/go
 
