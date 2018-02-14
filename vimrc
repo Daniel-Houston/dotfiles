@@ -100,6 +100,9 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " JSBeautify
   Plugin 'maksimr/vim-jsbeautify'
 
+  " auto-pairs
+  Plugin 'jiangmiao/auto-pairs'
+
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
