@@ -86,9 +86,11 @@ alias gnew='git checkout -b'
 # Idea keyboard
 alias keyfix="ibus-daemon -rd"
 
-# Dotfiles Directory
+# Common Directories
 DOTFILES=~/Development/dotfiles
 alias dots='cd '$DOTFILES
+alias dev='cd ~/Development'
+
 
 gitStatusDots() {
   pushd $DOTFILES
