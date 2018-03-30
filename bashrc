@@ -20,7 +20,7 @@ source ~/.git-prompt.sh
 export PS1="\u@\h \W\$(__git_ps1 \" (%s)\") \$ "
 
 # Maven
-export PATH=/usr/local/apache-maven-3.5.2/bin:$PATH
+export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 
 # Go
 #export GOROOT=/usr/local/go
@@ -30,9 +30,9 @@ export PATH=$PATH:$(go env GOPATH)/bin
 # export GOPATH=/home/dhouston/Development/go
 
 # Intellij Idea
-export IDEA_HOME=~/Util/idea-IU-173.3727.127/
+export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
 export IDEA_BIN=$IDEA_HOME/bin
-export PATH=$IDEA_BIN:$PATH
+export PATH=$PATH:$IDEA_BIN
 
 alias ls="ls -G"
 alias ll="ls -laG"

@@ -64,7 +64,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " plugin from http://vim-scripts.org/vim/scripts.html
   " Plugin 'L9'
   " Git plugin not hosted on GitHub
-  Plugin 'git://git.wincent.com/command-t.git'
+  " Plugin 'git://git.wincent.com/command-t.git'
   " git repos on your local machine (i.e. when working on your own plugin)
   " Plugin 'file:///home/gmarik/path/to/plugin'
   " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -80,7 +80,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   Plugin 'scrooloose/nerdtree'
 
   " Syntastic
-  Plugin 'vim-syntastic/syntastic'
+  "Plugin 'vim-syntastic/syntastic'
 
   " Omni Complete Automatic Popup
   Plugin 'vim-scripts/AutoComplPop'
@@ -254,7 +254,7 @@ map <Leader><Tab> <C-^>
 
 " NERDTree
 " if exists(":NERDTreeToggle")
-  map <C-n> :NERDTreeToggle<CR>
+  map <Leader>n :NERDTreeToggle<CR>
   " Uncomment to close vim when all open buffers are closed
   "   (even if NERDTree is open)
   " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -262,23 +262,23 @@ map <Leader><Tab> <C-^>
 
 " Syntastic
 " if exists(":SyntasticInfo")
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+"  set statusline+=%#warningmsg#
+"  set statusline+=%{SyntasticStatuslineFlag()}
+"  set statusline+=%*
 
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
+"  let g:syntastic_always_populate_loc_list = 1
+"  let g:syntastic_auto_loc_list = 1
   " let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
+"  let g:syntastic_check_on_wq = 0
 
   " Syntastic checker configuration 
-  let g:syntastic_java_checkers = ["javac", "checkstyle"]
-  let g:syntastic_javascript_checkers= ["eslint"]
-  let g:syntastic_go_checkers= ["golint"]
-  let g:syntastic_sql_checkers= ["sqlint"]
-  let g:syntastic_html_checkers=["eslint"]
-  let g:syntastic_aggregate_errors = 1
-  let g:syntastic_id_checkers = 0
+"  let g:syntastic_java_checkers = ["javac", "checkstyle"]
+"  let g:syntastic_javascript_checkers= ["eslint"]
+"  let g:syntastic_go_checkers= ["golint"]
+"  let g:syntastic_sql_checkers= ["sqlint"]
+"  let g:syntastic_html_checkers=["eslint"]
+"  let g:syntastic_aggregate_errors = 1
+"  let g:syntastic_id_checkers = 0
 "endif
 
 " Ctrl P
@@ -317,10 +317,24 @@ map <Leader><Tab> <C-^>
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
   autocmd FileType go nmap <Leader>d :GoDocBrowser
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+  " Automatically call :GoSameIds to match ids under your cursor
+  let g:go_auto_sameids = 1
+  let g:go_auto_type_info = 1
+  " Set go-info delay time (ms)
+  set updatetime=100
 
   " Set all error lists to be quickfix
   " let g:go_list_type = 'quickfix'
   "
   " Set :GoTest timeout value
   " let g:go_test_timeout = '10s'
+
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
 "endif
