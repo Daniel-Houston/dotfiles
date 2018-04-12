@@ -137,12 +137,13 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 " Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+noremap <Leader>h :split<CR>
+noremap <Leader>v :vsplit<CR>
 noremap <Leader>+ :resize +5<CR>
 noremap <Leader>- :resize -5<CR>
 noremap <Leader>> :vertical resize +5<CR>
 noremap <Leader>< :vertical resize -5<CR>
+noremap <Leader>= <C-w>=
 
 syntax enable
 set t_Co=256
