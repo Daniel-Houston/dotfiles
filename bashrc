@@ -137,3 +137,7 @@ alias src-grep=searchForText
 
 # Turn off ctrl+s ctrl+q for terminal. This helps vim stuff
 stty -ixon
+
+# Clean up dep's cache
+alias cdep="pushd ~/go/pkg/dep/sources"
+
