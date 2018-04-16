@@ -15,9 +15,9 @@ tmux send-keys -t java:3 'cd ~/docker-dev' Enter
 # Golang Stuff
 tmux new-session -d -s 'golang' -n 'terminal'
 tmux new-window -t golang:1 -n 'vim'
-tmux send-keys -t golang:vim.0 'bncr;vim' Enter
+tmux send-keys -t golang:vim.0 'gospc;vim' Enter
 tmux split-window -v -p 25
-tmux send-keys -t golang:vim.1 'bncr' Enter
+tmux send-keys -t golang:vim.1 'gospc' Enter
 
 if [ ! $# -eq 0 ]; then
 	tmux attach-session -t $1	
