@@ -106,6 +106,9 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " vim-tern
   Plugin 'ternjs/tern_for_vim'
 
+  " BufExplorer
+  Plugin 'jlanzarotta/bufexplorer'
+
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
@@ -244,6 +247,10 @@ map <space> <Leader>
 
 " Make buffers Hidden
 set hidden
+" Cycle through buffers.
+nnoremap <A-Tab> :bnext<CR>
+nnoremap <A-Tab> :bprevious<CR>
+nnoremap <Tab> :BufExplorerHorizontalSplit<CR>
 
 " Show all tabs and trailing whitespace
 " See https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
