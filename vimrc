@@ -251,6 +251,7 @@ set hidden
 nnoremap <A-Tab> :bnext<CR>
 nnoremap <A-Tab> :bprevious<CR>
 nnoremap <Tab> :BufExplorerHorizontalSplit<CR>
+nnoremap <F2>
 
 " Show all tabs and trailing whitespace
 " See https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
@@ -315,6 +316,9 @@ map <Leader><Tab> <C-^>
   map <C-n> :cnext<CR>
   map <C-m> :cprevious<CR>
   nnoremap <leader>a :cclose<CR>
+
+  "goimports is a replacement for gofmt that adds/removes imports
+  "automatically and then runs gofmt
   let g:go_fmt_command = "goimports"
 
   " run :GoBuild or :GoTestCompile based on the go file
