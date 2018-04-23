@@ -171,6 +171,10 @@ set lazyredraw " Don't redraw during macros
 
 hi Search ctermbg=DarkBlue ctermfg=LightGray
 
+" Cursorline
+set cul
+hi CursorLine cterm=NONE ctermbg=Black
+
 " Relative and Absolute Line Numbers
 set relativenumber
 nnoremap <F5> :set relativenumber!<CR>:set number!<CR>
