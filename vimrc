@@ -107,7 +107,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   Plugin 'ternjs/tern_for_vim'
 
   " BufExplorer
-  Plugin 'jlanzarotta/bufexplorer'
+  " Plugin 'jlanzarotta/bufexplorer'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -179,12 +179,18 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-  " For all java files set 'textwidth' to 120 characters.
-  autocmd FileType java setlocal textwidth=120
-
+    " For all java files set 'textwidth' to 120 characters.
+    autocmd FileType java setlocal textwidth=120
   augroup END
+
+  augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+  augroup END
+
 
   " Toggle line number types depending on events
   " This does not work as expected 
@@ -257,7 +263,7 @@ set hidden
 " Cycle through buffers.
 nnoremap <A-Tab> :bnext<CR>
 nnoremap <A-Tab> :bprevious<CR>
-nnoremap <Tab> :BufExplorerHorizontalSplit<CR>
+" nnoremap <Tab> :BufExplorerHorizontalSplit<CR>
 
 " Show all tabs and trailing whitespace
 " See https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters
@@ -273,6 +279,10 @@ noremap <C-l> <C-w>l
 
 " Navigate to mru buffer with C-Tab
 map <Leader><Tab> <C-^>
+
+" Navigate to the end and beginning of lines more easily
+map E $
+map B ^
 
 " NERDTree
 " if exists(":NERDTreeToggle")
@@ -306,6 +316,7 @@ map <Leader><Tab> <C-^>
 " Ctrl P
 "if exists(":CtrlP")
   nnoremap \p :CtrlP<CR>
+  nnoremap <Tab> :CtrlPMRUFiles<CR> 
   let g:ctrlp_custom_ignore = {
      \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node|build)$',
      \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
