@@ -161,6 +161,13 @@ set incsearch
 set laststatus=2
 set colorcolumn=120
 set autowrite
+set wildmenu
+set scrolloff=2
+set sidescrolloff=5
+set confirm "Confirm when closing an unsaved buffer
+set formatoptions+=j "Remove comment leaders when combining lines
+set history=1000 "Increase Undo History
+set lazyredraw " Don't redraw during macros
 
 hi Search ctermbg=DarkBlue ctermfg=LightGray
 
