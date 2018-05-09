@@ -138,6 +138,7 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+nnoremap ; :
 
 " Split
 noremap <Leader>h :split<CR>
@@ -150,9 +151,10 @@ noremap <Leader>= <C-w>=
 
 syntax enable
 set t_Co=256
-"set expandtab
-"set shiftwidth=2
-"set shiftwidth=1
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set smarttab
 set smartindent
 set ignorecase
 set smartcase
@@ -169,7 +171,13 @@ set formatoptions+=j "Remove comment leaders when combining lines
 set history=1000 "Increase Undo History
 set lazyredraw " Don't redraw during macros
 
+set visualbell
+set noerrorbells
+
 hi Search ctermbg=DarkBlue ctermfg=LightGray
+nmap <silent> ,/ :nohlsearch<CR>
+
+imap jk <ESC> 
 
 " Cursorline
 set cul
@@ -183,10 +191,16 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-    au!
+      au!
 
-    " For all java files set 'textwidth' to 120 characters.
-    autocmd FileType java setlocal textwidth=120
+      " For all java files set 'textwidth' to 120 characters.
+      autocmd FileType java setlocal textwidth=120
+      autocmd FileType javascript,java,golang nnoremap <buffer> <Leader>/ I//<esc>j
+      autocmd FileType javascript,java,golang nnoremap <buffer> <Leader>? ^xxj
+      autocmd FileType python,sh     nnoremap <buffer> <Leader>/ I#<esc>j
+      autocmd FileType python,sh     nnoremap <buffer> <Leader>? ^xj
+      autocmd FileType vim     nnoremap <buffer> <Leader>/ I"<esc>j
+      autocmd FileType vim     nnoremap <buffer> <Leader>? ^xj
   augroup END
 
   augroup CursorLine
