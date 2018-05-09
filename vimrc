@@ -106,8 +106,8 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " vim-tern
   Plugin 'ternjs/tern_for_vim'
 
-  " BufExplorer
-  " Plugin 'jlanzarotta/bufexplorer'
+  " vim-yaml
+  Plugin 'yaml.vim'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -378,3 +378,6 @@ map B ^
   let g:go_highlight_operators = 1
   let g:go_highlight_extra_types = 1
 "endif
+
+" yaml.vim
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
