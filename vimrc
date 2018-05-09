@@ -151,8 +151,9 @@ noremap <Leader>= <C-w>=
 
 syntax enable
 set t_Co=256
-set expandtab
-set softtabstop=4
+set noexpandtab
+set tabstop=4
+set softtabstop=0
 set shiftwidth=4
 set smarttab
 set smartindent
@@ -195,8 +196,11 @@ if has("autocmd")
 
       " For all java files set 'textwidth' to 120 characters.
       autocmd FileType java setlocal textwidth=120
-      autocmd FileType javascript,java,golang nnoremap <buffer> <Leader>/ I//<esc>j
-      autocmd FileType javascript,java,golang nnoremap <buffer> <Leader>? ^xxj
+  augroup END
+
+  augroup commenting
+      autocmd FileType javascript,java,go nnoremap <buffer> <Leader>/ I//<esc>j
+      autocmd FileType javascript,java,go nnoremap <buffer> <Leader>? ^xxj
       autocmd FileType python,sh     nnoremap <buffer> <Leader>/ I#<esc>j
       autocmd FileType python,sh     nnoremap <buffer> <Leader>? ^xj
       autocmd FileType vim     nnoremap <buffer> <Leader>/ I"<esc>j
@@ -208,7 +212,6 @@ if has("autocmd")
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
   augroup END
-
 
   " Toggle line number types depending on events
   " This does not work as expected 
@@ -394,4 +397,4 @@ map B ^
 "endif
 
 " yaml.vim
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
