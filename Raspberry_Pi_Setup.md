@@ -3,6 +3,10 @@
 	* boot & hold shift (boots to recovery mode). 
 	* Use dialog to install new image
 
+2. Set up wifi (using wpa_supplicant)
+	* See https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+	* static ip address (https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update)
+
 2. Upgrade OS
 ```
 sudo apt-get update
