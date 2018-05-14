@@ -10,6 +10,14 @@ fi
 if [ -f ~/.workrc ]; then
   . ~/.workrc
 fi
+
+if [ -f ~/.privaterc ]; then
+  . ~/.privaterc
+fi
+
+if [ -f ~/.dots_location ]; then
+  . ~/.dots_location
+fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
@@ -85,8 +93,6 @@ alias gnew='git checkout -b'
 alias keyfix="ibus-daemon -rd"
 
 # Common Directories
-DOTFILES=~/Development/dotfiles
-alias dots='cd '$DOTFILES
 alias dev='cd ~/Development'
 
 

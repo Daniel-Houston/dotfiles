@@ -8,10 +8,20 @@ ln -is $CWD/vimrc $HOME/.vimrc
 ln -is $CWD/git-prompt.sh $HOME/.git-prompt.sh
 ln -is $CWD/sleeplock.sh $HOME/.sleeplock.sh
 ln -is $CWD/tmux.conf $HOME/.tmux.conf
+if [ -f $CWD/privaterc ] ; then
+	ln -is $CWD/privaterc $HOME/.privaterc
+fi
 
 if [ -d $HOME/.config/i3  ] ; then
   ln -is $CWD/i3config $HOME/.config/i3/config 
 fi
+# Setup dots alias
+if [ ! -f $CWD/dots_location ] ; then
+	touch dots_location
+	
+fi
+echo "alias dots='cd "$CWD"'" > dots_location 
+ln -is $CWD/dots_location $HOME/.dots_location
 
 # Set up vundle
 if [ ! -d $HOME/.vim/bundle/Vundle.vim ] ; then
