@@ -146,6 +146,3 @@ stty -ixon
 
 # Clean up dep's cache
 alias cdep="pushd ~/go/pkg/dep/sources"
-
-# Tell bash to use vi editing mode
-set -o vi
