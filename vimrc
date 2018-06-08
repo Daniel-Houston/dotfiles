@@ -172,7 +172,6 @@ set formatoptions+=j "Remove comment leaders when combining lines
 set history=1000 "Increase Undo History
 set lazyredraw " Don't redraw during macros
 
-set visualbell
 set noerrorbells
 
 hi Search ctermbg=DarkBlue ctermfg=LightGray

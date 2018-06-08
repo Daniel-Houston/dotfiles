@@ -20,12 +20,15 @@ if [ -f ~/.dots_location ]; then
 fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
+export LAMBDA=λ
+export SKULL=☠
 
 # User specific aliases and functions
 # Git-Prompt
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 source ~/.git-prompt.sh
-export PS1="\u@\h \W\$(__git_ps1 \" (%s)\") \$ "
+# export PS1="\u@\h \W\$(__git_ps1 \" (%s)\") \$ "
+export PS1="\W\$(__git_ps1 \" (%s)\") ${SKULL} > "
 
 # Maven
 export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
@@ -146,3 +149,13 @@ stty -ixon
 
 # Clean up dep's cache
 alias cdep="pushd ~/go/pkg/dep/sources"
+
+# Changing behavior of cd
+function cd
+{
+    # This will pass all the arguments on the
+    # command line (the "$@") to the 'cd' builtin,
+    # and then execute an 'ls' on the current directory
+    builtin cd "$@" && ls
+}
+
