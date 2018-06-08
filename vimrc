@@ -102,7 +102,10 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
   " auto-pairs
   Plugin 'jiangmiao/auto-pairs'
-  
+
+  " Rainbow Vim
+  Plugin 'luochen1990/rainbow'
+
   " vim-tern
   Plugin 'ternjs/tern_for_vim'
 
@@ -313,6 +316,7 @@ map B ^
 " NERDTree
 " if exists(":NERDTreeToggle")
   map <Leader>n :NERDTreeToggle<CR>
+  let NERDTreeShowHidden=1
   " Uncomment to close vim when all open buffers are closed
   "   (even if NERDTree is open)
   " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -403,3 +407,8 @@ map B ^
 
 " yaml.vim
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
+
+" rainbow.vim
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+

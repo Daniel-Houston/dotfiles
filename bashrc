@@ -37,11 +37,9 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 
 # Go
-#export GOROOT=/usr/local/go
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
-# I have been told it is a bad idea to change your GOPATH
-# export GOPATH=/home/dhouston/Development/go
+
 
 # Intellij Idea
 export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
