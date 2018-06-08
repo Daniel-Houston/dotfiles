@@ -30,6 +30,9 @@ source ~/.git-prompt.sh
 # export PS1="\u@\h \W\$(__git_ps1 \" (%s)\") \$ "
 export PS1="\W\$(__git_ps1 \" (%s)\") ${SKULL} > "
 
+# PATH fun!
+export PATH=$PATH:$HOME/.local/bin
+
 # Maven
 export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 

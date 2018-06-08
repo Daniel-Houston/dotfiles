@@ -4,6 +4,18 @@ A great place to learn the basics of vim is by typing 'vimtutor' in the command 
 c is a change operator (essentially delete text and open insert mode)
 * ce - Change text until end of word
   * lubw (type ce with cursor on u, then ine).
+* ciw - change in word
+	- ci' (change in quotes)
+	- ci{ (change in curlys)
+	- cit (change in html tag)
+* caw - change around word
+	- ca' (change in quotes)
+	- ca{ (change in curlys)
+	- cat (change in html tag)
+	
+## The f and t operators
+* f -> go until you encounter a character
+* t -> go to right before the character specified
 
 ## The r operator
 * r - replace one character
@@ -70,6 +82,5 @@ For more guidance on this, see:
 :help :noremap
 :help recursive_mapping
 :help :map-modes
-
 
 

@@ -109,6 +109,12 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " vim-yaml
   Plugin 'yaml.vim'
 
+  " vim-surrond
+  Plugin 'tpope/vim-surrond'
+  
+  " vim-sneak
+  Plugin 'justinmk/vim-sneak'
+
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
