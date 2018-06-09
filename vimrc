@@ -113,10 +113,13 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   Plugin 'yaml.vim'
 
   " vim-surrond
-  Plugin 'tpope/vim-surrond'
+  Plugin 'tpope/vim-surround'
   
   " vim-sneak
   Plugin 'justinmk/vim-sneak'
+
+  " Editorconfig
+  Plugin 'editorconfig/editorconfig-vim'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
