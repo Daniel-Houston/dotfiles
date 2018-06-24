@@ -59,6 +59,9 @@ export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
 export IDEA_BIN=$IDEA_HOME/bin
 export PATH=$PATH:$IDEA_BIN
 
+# Reverse Search
+bindkey '^R' history-incremental-search-backward
+
 alias ls="ls -G"
 alias ll="ls -laG"
 alias cd..="cd .."
