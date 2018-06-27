@@ -85,7 +85,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " Omni Complete Automatic Popup
   Plugin 'vim-scripts/AutoComplPop'
 
-  " vim-go 
+  " vim-go
   Plugin 'fatih/vim-go'
 
   " Vim Airline
@@ -114,7 +114,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
   " vim-surrond
   Plugin 'tpope/vim-surround'
-  
+
   " vim-sneak
   Plugin 'justinmk/vim-sneak'
 
@@ -189,7 +189,7 @@ set noerrorbells
 hi Search ctermbg=DarkBlue ctermfg=LightGray
 nmap <silent> ,/ :nohlsearch<CR>
 
-imap jk <ESC> 
+imap jk <ESC>
 
 " Cursorline
 set cul
@@ -225,7 +225,7 @@ if has("autocmd")
   augroup END
 
   " Toggle line number types depending on events
-  " This does not work as expected 
+  " This does not work as expected
   " augroup numbertoggle
    " autocmd!
    " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -336,7 +336,7 @@ map B ^
   " let g:syntastic_check_on_open = 1
 "  let g:syntastic_check_on_wq = 0
 
-  " Syntastic checker configuration 
+  " Syntastic checker configuration
 "  let g:syntastic_java_checkers = ["javac", "checkstyle"]
 "  let g:syntastic_javascript_checkers= ["eslint"]
 "  let g:syntastic_go_checkers= ["golint"]
@@ -349,7 +349,7 @@ map B ^
 " Ctrl P
 "if exists(":CtrlP")
   nnoremap \p :CtrlP<CR>
-  nnoremap <Tab> :CtrlPMRUFiles<CR> 
+  nnoremap <Tab> :CtrlPMRUFiles<CR>
   let g:ctrlp_custom_ignore = {
      \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node|build)$',
      \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
