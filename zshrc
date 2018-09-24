@@ -104,6 +104,7 @@ alias gb='git branch'
 alias gc='git commit'
 alias gp='git push'
 alias gd='git diff --color'
+alias gdc='git diff --cached --color'
 alias gds='git diff --color staged'
 alias glo='git log --pretty=oneline'
 alias glp='git log -p -1'
@@ -177,3 +178,5 @@ function cd
     builtin cd "$@" && ls
 }
 
+# Vault
+export VAULT_ADDR="https://vault.dev.srdev.io"
