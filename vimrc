@@ -78,6 +78,7 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
   " NerdTree
   Plugin 'scrooloose/nerdtree'
+  Plugin 'Xuyuanp/nerdtree-git-plugin'
 
   " Syntastic
   "Plugin 'vim-syntastic/syntastic'
@@ -120,6 +121,12 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
   " Editorconfig
   Plugin 'editorconfig/editorconfig-vim'
+
+  " Protobufs
+  Bundle 'uarun/vim-protobuf'
+
+  " vim-terraform
+  Bundle 'hashivim/vim-terraform'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -198,6 +205,10 @@ hi CursorLine cterm=NONE ctermbg=Black
 " Relative and Absolute Line Numbers
 set relativenumber
 nnoremap <F5> :set relativenumber!<CR>:set number!<CR>
+
+" Paste Mode
+noremap <F7> :set paste!<CR>
+
 
 if has("autocmd")
 
@@ -319,6 +330,7 @@ map B ^
 " NERDTree
 " if exists(":NERDTreeToggle")
   map <Leader>n :NERDTreeToggle<CR>
+
   let NERDTreeShowHidden=1
   " Uncomment to close vim when all open buffers are closed
   "   (even if NERDTree is open)
@@ -414,4 +426,8 @@ au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
 " rainbow.vim
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
+" vim-terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
+let g:gitgutter_git_args=""

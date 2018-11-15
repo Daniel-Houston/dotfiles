@@ -26,6 +26,9 @@ font pango:monospace 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+#https://i3wm.org/docs/userguide.html#_hiding_vertical_borders
+hide_edge_borders both
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -222,18 +225,17 @@ mode "move" {
 }
 
 # Rotate Right monitor on start
-exec --no-startup-id xrandr --output DP-2 --rotate left
+exec --no-startup-id xrandr --output DP-1 --rotate left
 
 # Disable focus following mouse
 focus_follows_mouse no
 
+#https://i3wm.org/docs/userguide.html#_orientation_for_new_workspaces
 # Assign programs to workspaces
-assign [class="Gnome-terminal"] 1
-assign [class="Google-chrome"] 1
+assign [class="Gnome-terminal"] 2
+assign [class="Firefox"] 1
 assign [class="jetbrains-idea"] 2
-assign [class="HipChat"] 2
 
 exec gnome-terminal
-exec google-chrome
-exec idea.sh
-exec hipchat4
+exec firefox
+#exec idea.sh

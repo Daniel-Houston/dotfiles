@@ -6,9 +6,11 @@ ln -is $CWD/dev-tmux.sh $HOME/.dev-tmux.sh
 ln -is $CWD/bashrc $HOME/.bashrc
 ln -is $CWD/zshrc $HOME/.zshrc
 ln -is $CWD/vimrc $HOME/.vimrc
+ln -is $CWD/xinitrc $HOME/.xinitrc
 ln -is $CWD/git-prompt.sh $HOME/.git-prompt.sh
 ln -is $CWD/sleeplock.sh $HOME/.sleeplock.sh
 ln -is $CWD/tmux.conf $HOME/.tmux.conf
+ln -is $CWD/fehbg $HOME/.fehgb
 if [ -f $CWD/privaterc ] ; then
 	ln -is $CWD/privaterc $HOME/.privaterc
 fi

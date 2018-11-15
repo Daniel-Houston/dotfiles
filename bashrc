@@ -46,6 +46,8 @@ export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
 export IDEA_BIN=$IDEA_HOME/bin
 export PATH=$PATH:$IDEA_BIN
 
+export PAGER=cat
+
 alias ls="ls -G"
 alias ll="ls -laG"
 alias cd..="cd .."
@@ -159,4 +161,5 @@ function cd
     # and then execute an 'ls' on the current directory
     builtin cd "$@" && ls
 }
+
 
