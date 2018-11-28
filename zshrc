@@ -294,3 +294,11 @@ function cd
 export VAULT_ADDR="https://vault.dev.srdev.io"
 
 [ -f ~/Development/fubectl.source  ] && source ~/Development/fubectl.source
+
+volume() {
+	if [ -z "$1" ]; then
+		pamixer --get-volume
+	else
+		pamixer --set-volume $1
+	fi
+}
