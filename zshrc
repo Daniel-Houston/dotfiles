@@ -300,5 +300,6 @@ volume() {
 		pamixer --get-volume
 	else
 		pamixer --set-volume $1
+		pamixer --get-volume
 	fi
 }
