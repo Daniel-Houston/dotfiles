@@ -198,9 +198,13 @@ nmap <silent> ,/ :nohlsearch<CR>
 
 imap jk <ESC>
 
+" BEGIN: Background-influenced settings
+" Tell vim I'm writing on a dark background
+set background=dark
 " Cursorline
 set cul
 hi CursorLine cterm=NONE ctermbg=Black
+" END: Background-influenced settings
 
 " Relative and Absolute Line Numbers
 set relativenumber
@@ -248,9 +252,6 @@ endif " has("autocmd")
 " Split Right and Below
 set splitright
 set splitbelow
-
-" Tell vim I'm writing on a dark background
-set background=dark
 
 " Don't wrap lines longer than the view
 set nowrap

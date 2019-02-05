@@ -4,6 +4,7 @@ CWD=$(pwd)
 # Create symlinks
 ln -is $CWD/dev-tmux.sh $HOME/.dev-tmux.sh
 ln -is $CWD/bashrc $HOME/.bashrc
+ln -is $CWD/aliases $HOME/.aliases
 ln -is $CWD/zshrc $HOME/.zshrc
 ln -is $CWD/vimrc $HOME/.vimrc
 ln -is $CWD/xinitrc $HOME/.xinitrc
