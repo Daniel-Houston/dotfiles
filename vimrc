@@ -399,6 +399,7 @@ map B ^
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
   autocmd FileType go nmap <Leader>d :GoDocBrowser
+  autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
   " Automatically call :GoSameIds to match ids under your cursor
