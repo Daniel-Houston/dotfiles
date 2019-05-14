@@ -50,6 +50,9 @@ export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
 export IDEA_BIN=$IDEA_HOME/bin
 export PATH=$PATH:$IDEA_BIN
 
+# Istio
+export PATH="$PATH:/home/dhouston/Util/istio-1.1.1/bin"
+
 export PAGER=cat
 
 # Turn off ctrl+s ctrl+q for terminal. This helps vim stuff

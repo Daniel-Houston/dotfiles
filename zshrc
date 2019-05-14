@@ -157,14 +157,20 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 
 # Go
+export GOPATH=/home/dhouston/go
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
+export GO111MODULE=on
 
 
 # Intellij Idea
 #export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127
 #export IDEA_BIN=$IDEA_HOME/bin
 #export PATH=$PATH:$IDEA_BIN
+
+# ISTIO
+export PATH="$PATH:/home/dhouston/Util/istio-1.1.1/bin"
+
 
 # Reverse Search
 bindkey '^R' history-incremental-search-backward

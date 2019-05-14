@@ -109,3 +109,16 @@ function cd
     builtin cd "$@" && ls
 }
 
+alias mkubestart="minikube start --memory=8192 --cpus=4 --kubernetes-version=v1.13.0"
+
+defineMinikubeGatewayURL() {
+  export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+  export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+  export INGRESS_HOST=$(minikube ip)
+  export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+}
+
+alias defineGateway=defineMinikubeGatewayURL
+
+alias modon="export GO111MODULE=on"
+alias modoff="export GO111MODULE=off"

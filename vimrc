@@ -383,6 +383,8 @@ map B ^
   " goimports is a replacement for gofmt that adds/removes imports
   " automatically and then runs gofmt
   let g:go_fmt_command = "goimports"
+  let g:go_def_mode='gopls'
+  let g:go_info_mode='gopls'
 
   " run :GoBuild or :GoTestCompile based on the go file
   function! s:build_go_files()
