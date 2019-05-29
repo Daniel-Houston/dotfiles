@@ -3,7 +3,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/dhouston/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -61,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  archlinux
+  #archlinux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -157,7 +157,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 
 # Go
-export GOPATH=/home/dhouston/go
+export GOPATH="$HOME/go"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export GO111MODULE=on
@@ -169,7 +169,7 @@ export GO111MODULE=on
 #export PATH=$PATH:$IDEA_BIN
 
 # ISTIO
-export PATH="$PATH:/home/dhouston/Util/istio-1.1.1/bin"
+# export PATH="$PATH:$HOME/Util/istio-1.1.1/bin"
 
 
 # Reverse Search

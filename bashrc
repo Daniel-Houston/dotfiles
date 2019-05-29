@@ -51,7 +51,7 @@ export IDEA_BIN=$IDEA_HOME/bin
 export PATH=$PATH:$IDEA_BIN
 
 # Istio
-export PATH="$PATH:/home/dhouston/Util/istio-1.1.1/bin"
+# export PATH="$PATH:$HOME/Util/istio-1.1.1/bin"
 
 export PAGER=cat
 
