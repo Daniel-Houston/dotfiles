@@ -105,6 +105,11 @@ if [ "$OS" == "darwin" ]; then
 	  echo "ag is installed"
   fi
 
+  # focus follows mouse. See https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
+  defaults write com.apple.x11 wm_ffm -bool true
+
+
+
 fi
 
 echo "Finished setup"

@@ -61,6 +61,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  #kubectl
   #archlinux
 )
 
@@ -188,7 +189,8 @@ bindkey '^R' history-incremental-search-backward
 # Turn off ctrl+s ctrl+q for terminal. This helps vim stuff
 stty -ixon
 
-[ -f ~/Development/fubectl.source  ] && source ~/Development/fubectl.source
+[ -f $HOME/Util/fubectl.source  ] && source $HOME/Util/fubectl.source
+[ -f /usr/local/etc/profile.d/autojump.sh  ] && . /usr/local/etc/profile.d/autojump.sh
 
 volume() {
 	if [ -z "$1" ]; then
@@ -198,3 +200,18 @@ volume() {
 		pamixer --get-volume
 	fi
 }
+
+# Google Cloud SDK
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+export PATH=$PATH:$HOME/google-cloud-sdk-bin
+
+OS=`uname -s`
+OS=`echo $OS | awk '{print tolower($0)}'`  #toLower
+if [ "$OS" = "darwin" ]; then
+	ulimit -n 1024
+fi

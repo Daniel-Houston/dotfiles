@@ -380,13 +380,13 @@ map B ^
   map <C-m> :cprevious<CR>
   nnoremap <leader>a :cclose<CR>
 
-  " goimports is a replacement for gofmt that adds/removes imports
-  " automatically and then runs gofmt
+ " goimports is a replacement for gofmt that adds/removes imports
+ " automatically and then runs gofmt
   let g:go_fmt_command = "goimports"
   let g:go_def_mode='gopls'
   let g:go_info_mode='gopls'
 
-  " run :GoBuild or :GoTestCompile based on the go file
+ " run :GoBuild or :GoTestCompile based on the go file
   function! s:build_go_files()
     let l:file = expand('%')
     if l:file =~# '^\f\+_test\.go$'
@@ -404,24 +404,24 @@ map B ^
   autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
-  " Automatically call :GoSameIds to match ids under your cursor
+ " Automatically call :GoSameIds to match ids under your cursor
   let g:go_auto_sameids = 1
   let g:go_auto_type_info = 1
-  " Set go-info delay time (ms)
+ " Set go-info delay time (ms)
   set updatetime=100
 
-  " Set all error lists to be quickfix
-  " let g:go_list_type = 'quickfix'
-  "
-  " Set :GoTest timeout value
-  " let g:go_test_timeout = '10s'
+ " Set all error lists to be quickfix
+ " let g:go_list_type = 'quickfix'
+ "
+ " Set :GoTest timeout value
+ " let g:go_test_timeout = '10s'
 
-  let g:go_highlight_types = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_functions = 1
-  let g:go_highlight_methods = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_extra_types = 1
+  "let g:go_highlight_types = 1
+  "let g:go_highlight_fields = 1
+  "let g:go_highlight_functions = 1
+  "let g:go_highlight_methods = 1
+  "let g:go_highlight_operators = 1
+  "let g:go_highlight_extra_types = 1
 "endif
 
 " yaml.vim
