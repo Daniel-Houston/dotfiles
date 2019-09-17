@@ -132,3 +132,9 @@ function agiv() {
 function sterno() {
 	stern $1 -E $1-esp
 }
+
+# vim testing
+alias vim="/usr/local/bin/vim"
+
+# For a more polite hacking experience
+alias please="sudo"

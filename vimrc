@@ -122,6 +122,9 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " Editorconfig
   Plugin 'editorconfig/editorconfig-vim'
 
+  " tender theme
+  Plugin 'jacoborus/tender.vim'
+
   " Protobufs
   Bundle 'uarun/vim-protobuf'
 
@@ -190,21 +193,36 @@ set confirm "Confirm when closing an unsaved buffer
 set formatoptions+=j "Remove comment leaders when combining lines
 set history=1000 "Increase Undo History
 set lazyredraw " Don't redraw during macros
+set foldnestmax=1
 
 set noerrorbells
 
-hi Search ctermbg=DarkBlue ctermfg=LightGray
 nmap <silent> ,/ :nohlsearch<CR>
 
 imap jk <ESC>
 
-" BEGIN: Background-influenced settings
-" Tell vim I'm writing on a dark background
+" BEGIN: Color Scheme Stuff
 set background=dark
+if (has("termguicolors"))
+  set termguicolors
+  let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+  let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+endif
+
+colorscheme tender
+let g:airline_theme = 'tender'
+
+hi clear Folded
+hi Comment ctermfg=Grey guifg=Grey
+hi Folded gui=bold cterm=bold ctermfg=White guifg=White
+hi Visual ctermfg=bg ctermbg=fg guifg=bg guibg=fg
+hi goBlock ctermfg=Cyan guifg=Cyan cterm=underline gui=underline
 " Cursorline
-set cul
-hi CursorLine cterm=NONE ctermbg=Black
-" END: Background-influenced settings
+
+hi clear CursorLine
+hi CursorLine cterm=underline gui=underline
+
+" END: Color Scheme Stuff
 
 " Relative and Absolute Line Numbers
 set relativenumber
@@ -227,8 +245,8 @@ if has("autocmd")
   augroup commenting
       autocmd FileType javascript,java,go nnoremap <buffer> <Leader>/ I//<esc>j
       autocmd FileType javascript,java,go nnoremap <buffer> <Leader>? ^xxj
-      autocmd FileType python,sh     nnoremap <buffer> <Leader>/ I#<esc>j
-      autocmd FileType python,sh     nnoremap <buffer> <Leader>? ^xj
+      autocmd FileType python,sh,yaml     nnoremap <buffer> <Leader>/ I#<esc>j
+      autocmd FileType python,sh,yaml     nnoremap <buffer> <Leader>? ^xj
       autocmd FileType vim     nnoremap <buffer> <Leader>/ I"<esc>j
       autocmd FileType vim     nnoremap <buffer> <Leader>? ^xj
   augroup END
@@ -403,12 +421,14 @@ map B ^
   autocmd FileType go nmap <Leader>d :GoDocBrowser
   autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  autocmd FileType go setlocal foldmethod=syntax
 
  " Automatically call :GoSameIds to match ids under your cursor
   let g:go_auto_sameids = 1
   let g:go_auto_type_info = 1
  " Set go-info delay time (ms)
   set updatetime=100
+  let g:go_fmt_experimental = 1
 
  " Set all error lists to be quickfix
  " let g:go_list_type = 'quickfix'
@@ -416,13 +436,25 @@ map B ^
  " Set :GoTest timeout value
  " let g:go_test_timeout = '10s'
 
-  "let g:go_highlight_types = 1
-  "let g:go_highlight_fields = 1
-  "let g:go_highlight_functions = 1
-  "let g:go_highlight_methods = 1
-  "let g:go_highlight_operators = 1
-  "let g:go_highlight_extra_types = 1
-"endif
+  "let g:go_highlight_array_whitespace_error = 1
+  "let g:go_highlight_chan_whitespace_error = 1
+  "let g:go_highlight_space_tab_error = 1
+  "let g:go_highlight_trailing_whitespace_error = 1
+  "let g:go_highlight_build_constraints = 1
+  "let g:go_highlight_string_spellcheck = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_function_parameters = 1
+  let g:go_highlight_function_calls = 1
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_generate_tags = 1
+  let g:go_highlight_format_strings = 1
+  let g:go_highlight_variable_declarations = 1
+  let g:go_highlight_variable_assignments = 1
+  let g:go_highlight_methods = 1
+ "endif
 
 " yaml.vim
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
@@ -435,3 +467,11 @@ let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
 let g:gitgutter_git_args=""
+
+"https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+" Here is (what should be a one-line) map to help you tell just what syntax
+" highlighting groups the item under the cursor actually is:
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
