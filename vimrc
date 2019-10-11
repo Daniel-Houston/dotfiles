@@ -122,14 +122,15 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " Editorconfig
   Plugin 'editorconfig/editorconfig-vim'
 
-  " tender theme
-  Plugin 'jacoborus/tender.vim'
-
   " Protobufs
   Bundle 'uarun/vim-protobuf'
 
   " vim-terraform
   Bundle 'hashivim/vim-terraform'
+
+  " THEMES
+  " tender theme
+  Plugin 'jacoborus/tender.vim'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -421,7 +422,7 @@ map B ^
   autocmd FileType go nmap <Leader>d :GoDocBrowser
   autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  autocmd FileType go setlocal foldmethod=syntax
+  "autocmd FileType go setlocal foldmethod=syntax
 
  " Automatically call :GoSameIds to match ids under your cursor
   let g:go_auto_sameids = 1

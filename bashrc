@@ -32,7 +32,8 @@ export SKULL=☠
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 source ~/.git-prompt.sh
 # export PS1="\u@\h \W\$(__git_ps1 \" (%s)\") \$ "
-export PS1="\W\$(__git_ps1 \" (%s)\") ${SKULL} > "
+# export PS1="\W\$(__git_ps1 \" (%s)\") ${SKULL} > "
+export PS1="\W > "
 
 # PATH fun!
 export PATH=$PATH:$HOME/.local/bin
