@@ -47,6 +47,9 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" must be set before ale is loaded
+let g:ale_completion_enabled = 1
+
 if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " set the runtime path to include Vundle and initialize
   set rtp+=$HOME/.vim/bundle/Vundle.vim
@@ -127,6 +130,10 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
 
   " vim-terraform
   Bundle 'hashivim/vim-terraform'
+
+  " typescript
+  Plugin 'leafgarland/typescript-vim'
+  Plugin 'dense-analysis/ale'
 
   " THEMES
   " tender theme
@@ -299,8 +306,8 @@ set showcmd
 
 " Onmi Completion
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
+"set omnifunc=syntaxcomplete#Complete
+"set completeopt=longest,menuone
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
@@ -476,3 +483,32 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" typescript-vim 
+" https://github.com/leafgarland/typescript-vim
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost l* nested lwindow
+
+" ale
+let g:ale_linters = {
+\    'javascript': ['eslint'],
+\    'typescript': ['tsserver', 'tslint'],
+\    'vue': ['eslint']
+\}
+
+let g:ale_fixers = {
+\    '*': ['remove_trailing_lines', 'trim_whitespace'],
+\    'javascript': ['eslint'],
+\    'typescript': ['prettier'],
+\    'vue': ['eslint'],
+\    'scss': ['prettier'],
+\    'css': ['prettier'],
+\    'html': ['prettier']
+\}
+
+let g:ale_fix_on_save = 1
+set omnifunc=ale#completion#OmniFunc
+set completeopt=longest,menuone
+let g:ale_completion_tsserver_autoimport = 1
+autocmd CursorHold *.ts :ALEHover
+autocmd FileType typescript nmap <leader>d :ALEGoToDefinition<CR>
+autocmd FileType typescript nmap <leader>f :ALEFindReferences<CR>
