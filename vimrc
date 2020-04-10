@@ -483,7 +483,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" typescript-vim 
+" typescript-vim
 " https://github.com/leafgarland/typescript-vim
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
@@ -506,8 +506,9 @@ let g:ale_fixers = {
 \}
 
 let g:ale_fix_on_save = 1
-set omnifunc=ale#completion#OmniFunc
-set completeopt=longest,menuone
+"set omnifunc=ale#completion#OmniFunc
+"set completeopt=longest,menuone
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_completion_tsserver_autoimport = 1
 autocmd CursorHold *.ts :ALEHover
 autocmd FileType typescript nmap <leader>d :ALEGoToDefinition<CR>
