@@ -47,9 +47,6 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" must be set before ale is loaded
-let g:ale_completion_enabled = 1
-
 if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " set the runtime path to include Vundle and initialize
   set rtp+=$HOME/.vim/bundle/Vundle.vim
@@ -77,10 +74,10 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " different version somewhere else.
   " Plugin 'ascenator/L9', {'name': 'newL9'}
   "
-  Plugin 'posva/vim-vue'
+  "Plugin 'posva/vim-vue'
 
   " NerdTree
-  Plugin 'scrooloose/nerdtree'
+  Plugin 'nerdtree'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 
   " Syntastic
@@ -119,6 +116,9 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " vim-surrond
   Plugin 'tpope/vim-surround'
 
+  " vim-highlightedyank
+  Plugin 'machakann/vim-highlightedyank'
+
   " vim-sneak
   Plugin 'justinmk/vim-sneak'
 
@@ -126,18 +126,17 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   Plugin 'editorconfig/editorconfig-vim'
 
   " Protobufs
-  Bundle 'uarun/vim-protobuf'
+  "Bundle 'uarun/vim-protobuf'
 
   " vim-terraform
   Bundle 'hashivim/vim-terraform'
 
-  " typescript
-  Plugin 'leafgarland/typescript-vim'
-  Plugin 'dense-analysis/ale'
-
   " THEMES
   " tender theme
   Plugin 'jacoborus/tender.vim'
+
+  " Easy Motion
+  Plugin 'easymotion/vim-easymotion'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -483,33 +482,5 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" typescript-vim
-" https://github.com/leafgarland/typescript-vim
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost l* nested lwindow
-
-" ale
-let g:ale_linters = {
-\    'javascript': ['eslint'],
-\    'typescript': ['tsserver', 'tslint'],
-\    'vue': ['eslint']
-\}
-
-let g:ale_fixers = {
-\    '*': ['remove_trailing_lines', 'trim_whitespace'],
-\    'javascript': ['eslint'],
-\    'typescript': ['prettier'],
-\    'vue': ['eslint'],
-\    'scss': ['prettier'],
-\    'css': ['prettier'],
-\    'html': ['prettier']
-\}
-
-let g:ale_fix_on_save = 1
-"set omnifunc=ale#completion#OmniFunc
-"set completeopt=longest,menuone
-set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_completion_tsserver_autoimport = 1
-autocmd CursorHold *.ts :ALEHover
-autocmd FileType typescript nmap <leader>d :ALEGoToDefinition<CR>
-autocmd FileType typescript nmap <leader>f :ALEFindReferences<CR>
+" vim-highlightedyank
+let g:highlightedyank_highlight_duration=150

@@ -69,3 +69,5 @@ volume() {
 		pamixer --get-volume
 	fi
 }
+
+export PATH=$PATH:/Users/dmhous/.toolbox/bin

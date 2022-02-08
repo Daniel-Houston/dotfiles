@@ -1,0 +1,9 @@
+source ~/.vimrc
+
+set number
+set NERDTree
+set surround
+
+:map <leader>f <Action>(ReformatCode)
+:map <leader>d <Action>(Debug)
+:map <leader>r <Action>(Run)

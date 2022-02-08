@@ -3,11 +3,11 @@ alias ll="ls -laG"
 alias cd..="cd .."
 
 # Easy way to travel up a directory
-alias ..='cd ..' 
-alias ...='cd ../../../' 
-alias ....='cd ../../../../' 
-alias .....='cd ../../../../' 
-alias .4='cd ../../../../' 
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 
 # tmux kill session
@@ -22,14 +22,14 @@ alias grep='grep --color=auto'
 # do not delete / or prompt if deleting more than 3 files at a time #
 # Note, doesn't work on macOS b/c is uses BSD rm
 #alias rm='rm -I --preserve-root'
- 
+
 # confirmation #
-alias mv='mv -i' 
-alias cp='cp -i' 
+alias mv='mv -i'
+alias cp='cp -i'
 alias ln='ln -i'
- 
+
 # Parenting changing perms on / #
-# Note, doesn't work on macOS b/c is uses BSD 
+# Note, doesn't work on macOS b/c is uses BSD
 #alias chown='chown --preserve-root'
 #alias chmod='chmod --preserve-root'
 #alias chgrp='chgrp --preserve-root'
@@ -42,17 +42,22 @@ alias gc='git commit'
 alias gp='git push'
 alias gd='git diff --color'
 alias gds='git diff --color staged'
+alias gdc='git diff --color --cached'
 alias glo='git log --pretty=oneline'
 alias glp='git log -p -1'
 alias gio='git checkout'
 alias gnew='git checkout -b'
 alias gl='git checkout -'
+alias gr='git rebase'
+alias gri='git rebase -i'
 
 # Idea keyboard
 alias keyfix="ibus-daemon -rd"
 
 # Common Directories
 alias dev='cd ~/Development'
+
+alias tdev="~/.dev-tmux.sh"
 
 # Clean up dep's cache
 alias cdep="pushd ~/go/pkg/dep/sources"
@@ -134,7 +139,18 @@ function sterno() {
 }
 
 # vim testing
-alias vim="/usr/local/bin/vim"
+# alias vim="/usr/local/bin/vim"
 
 # For a more polite hacking experience
 alias please="sudo"
+
+#alias python=python3
+alias pip=pip3
+
+
+alias reload="source ~/.zshrc"
+
+alias d=docker
+alias dc="docker compose"
+
+alias uid="uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | pbcopy && pbpaste && echo"

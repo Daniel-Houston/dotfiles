@@ -9,6 +9,7 @@ ln -is $CWD/bashrc $HOME/.bashrc
 ln -is $CWD/aliases $HOME/.aliases
 ln -is $CWD/zshrc $HOME/.zshrc
 ln -is $CWD/vimrc $HOME/.vimrc
+ln -is $CWD/ideavimrc $HOME/.ideavimrc
 ln -is $CWD/xinitrc $HOME/.xinitrc
 ln -is $CWD/git-prompt.sh $HOME/.git-prompt.sh
 ln -is $CWD/sleeplock.sh $HOME/.sleeplock.sh
@@ -108,8 +109,9 @@ if [ "$OS" == "darwin" ]; then
   # focus follows mouse. See https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
   defaults write com.apple.x11 wm_ffm -bool true
 
-
-
 fi
+
+echo "Configuring git"
+git config push.default current
 
 echo "Finished setup"
