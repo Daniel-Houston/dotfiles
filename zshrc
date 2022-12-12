@@ -166,6 +166,10 @@ export GO111MODULE=on
 # npm installs
 export PATH=$PATH:$HOME/.npm-global/bin
 
+# Add python executables from default python on mac
+export PATH=$PATH:/Users/dmhous/Library/Python/3.9/bin
+export PATH=$PATH:/Users/dmhous/Library/Python/3.8/bin
+
 
 # Intellij Idea
 #export IDEA_HOME=$HOME/Util/idea-IU-173.3727.127

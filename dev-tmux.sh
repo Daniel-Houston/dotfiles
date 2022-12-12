@@ -4,13 +4,12 @@
 tmux new-session -d -s 'java' -n 'local'
 tmux send-keys -t java:0 'cd $HOME/a2z/atms/atms/transmem' Enter
 #tmux split-window -v -p 20
-tmux new-window -t java:1 -n 'devssh'
+tmux new-window -t java:1 -n 'devsync'
 tmux send-keys -t java:1 'cd $HOME/a2z/atms' Enter
-tmux send-keys -t java:1 'devssh' Enter
+tmux send-keys -t java:1 'devsync' Enter
 
-tmux new-window -t java:2 -n 'devsync'
-tmux send-keys -t java:2 'cd $HOME/a2z/atms' Enter
-tmux send-keys -t java:2 'devsync' Enter
+tmux new-window -t java:1 -n 'caf'
+tmux send-keys -t java:1 'caf 8' Enter
 
 # Golang Stuff
 #tmux new-session -d -s 'golang' -n 'terminal'

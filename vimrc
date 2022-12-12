@@ -201,6 +201,7 @@ set formatoptions+=j "Remove comment leaders when combining lines
 set history=1000 "Increase Undo History
 set lazyredraw " Don't redraw during macros
 set foldnestmax=1
+set shortmess-=S " Show count on searches
 
 set noerrorbells
 
