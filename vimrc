@@ -50,6 +50,8 @@ filetype off                  " required
 if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " set the runtime path to include Vundle and initialize
   set rtp+=$HOME/.vim/bundle/Vundle.vim
+"  let g:vundle_default_git_proto='git'
+
   call vundle#begin()
   " alternatively, pass a path where Vundle should install plugins
   "call vundle#begin('~/some/path/here')
@@ -77,9 +79,12 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   "Plugin 'posva/vim-vue'
 
   " NerdTree
-  Plugin 'nerdtree'
-  Plugin 'Xuyuanp/nerdtree-git-plugin'
-
+  " Plugin 'nerdtree'
+  " Plugin 'Xuyuanp/nerdtree-git-plugin'
+  
+  " Ranger
+  Plugin 'git@github.com:francoiscabrol/ranger.vim.git'
+  
   " Syntastic
   "Plugin 'vim-syntastic/syntastic'
 
@@ -96,8 +101,13 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   Plugin 'airblade/vim-gitgutter'
 
   "CtrlP
-  Plugin 'kien/ctrlp.vim'
-
+  "Plugin 'kien/ctrlp.vim'
+  
+  " fzf
+  Plugin 'junegunn/fzf'
+  Plugin 'junegunn/fzf.vim'
+ 
+  "
   " JSBeautify
   Plugin 'maksimr/vim-jsbeautify'
 
@@ -208,6 +218,7 @@ set noerrorbells
 nmap <silent> ,/ :nohlsearch<CR>
 
 imap jk <ESC>
+noremap <Leader>r :so $MYVIMRC<CR>
 
 " BEGIN: Color Scheme Stuff
 set background=dark
@@ -354,127 +365,140 @@ map <Leader><Tab> <C-^>
 map E $
 map B ^
 
-" NERDTree
-" if exists(":NERDTreeToggle")
-  map <Leader>n :NERDTreeToggle<CR>
+function Plugins()
+  " NERDTree
+  if exists(":NERDTreeToggle")
+    map <Leader>n :NERDTreeToggle<CR>
+	echo 'loaded nerdtree'
+  
+    let NERDTreeShowHidden=1
+    " Uncomment to close vim when all open buffers are closed
+    "   (even if NERDTree is open)
+    " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  endif
+  
+  " Syntastic
+  if exists(":SyntasticInfo")
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+  
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+  
+    " Syntastic checker configuration
+    let g:syntastic_java_checkers = ["javac", "checkstyle"]
+    let g:syntastic_javascript_checkers= ["eslint"]
+    let g:syntastic_go_checkers= ["golint"]
+    let g:syntastic_sql_checkers= ["sqlint"]
+    let g:syntastic_html_checkers=["eslint"]
+    let g:syntastic_aggregate_errors = 1
+    let g:syntastic_id_checkers = 0
+  endif
+  
+  " Ctrl P
+  if exists(":CtrlP")
+    nnoremap \p :CtrlP<CR>
+    nnoremap <Tab> :CtrlPMRUFiles<CR>
+    let g:ctrlp_custom_ignore = {
+       \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node|build)$',
+       \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
+       \ }
+       "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  
+    let g:ctrlp_max_files=0
+    let g:ctrlp_max_depth=40
+    let g:ctrlp_show_hidden=1
+  endif
+  
+  " fzf
+  if exists(":Files")
+    nnoremap <Leader>g :Files<CR>
+  endif
+  
+  " vim-go
+  if exists(":GoBuild")
+    map <C-n> :cnext<CR>
+    map <C-m> :cprevious<CR>
+    nnoremap <leader>a :cclose<CR>
+  
+   " goimports is a replacement for gofmt that adds/removes imports
+   " automatically and then runs gofmt
+    let g:go_fmt_command = "goimports"
+    let g:go_def_mode='gopls'
+    let g:go_info_mode='gopls'
+  
+   " run :GoBuild or :GoTestCompile based on the go file
+    function! s:build_go_files()
+      let l:file = expand('%')
+      if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0,1)
+      elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+      endif
+    endfunction
+  
+    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+    autocmd FileType go nmap <leader>r <Plug>(go-run)
+    autocmd FileType go nmap <leader>t <Plug>(go-test)
+    autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+    autocmd FileType go nmap <Leader>d :GoDocBrowser
+    autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
+    autocmd FileType go nmap <Leader>i <Plug>(go-info)
+    "autocmd FileType go setlocal foldmethod=syntax
+  
+   " Automatically call :GoSameIds to match ids under your cursor
+    let g:go_auto_sameids = 1
+    let g:go_auto_type_info = 1
+   " Set go-info delay time (ms)
+    set updatetime=100
+    let g:go_fmt_experimental = 1
+  
+   " Set all error lists to be quickfix
+   " let g:go_list_type = 'quickfix'
+   "
+   " Set :GoTest timeout value
+   " let g:go_test_timeout = '10s'
+  
+    "let g:go_highlight_array_whitespace_error = 1
+    "let g:go_highlight_chan_whitespace_error = 1
+    "let g:go_highlight_space_tab_error = 1
+    "let g:go_highlight_trailing_whitespace_error = 1
+    "let g:go_highlight_build_constraints = 1
+    "let g:go_highlight_string_spellcheck = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_parameters = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_format_strings = 1
+    let g:go_highlight_variable_declarations = 1
+    let g:go_highlight_variable_assignments = 1
+    let g:go_highlight_methods = 1
+  endif
+  
+  " yaml.vim
+  au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
+  
+  " rainbow.vim
+  let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+  
+  " vim-terraform
+  let g:terraform_align=1
+  let g:terraform_fmt_on_save=1
+  
+  let g:gitgutter_git_args=""
 
-  let NERDTreeShowHidden=1
-  " Uncomment to close vim when all open buffers are closed
-  "   (even if NERDTree is open)
-  " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"endif
+  " vim-highlightedyank
+  let g:highlightedyank_highlight_duration=150
+endfunction
 
-" Syntastic
-" if exists(":SyntasticInfo")
-"  set statusline+=%#warningmsg#
-"  set statusline+=%{SyntasticStatuslineFlag()}
-"  set statusline+=%*
-
-"  let g:syntastic_always_populate_loc_list = 1
-"  let g:syntastic_auto_loc_list = 1
-  " let g:syntastic_check_on_open = 1
-"  let g:syntastic_check_on_wq = 0
-
-  " Syntastic checker configuration
-"  let g:syntastic_java_checkers = ["javac", "checkstyle"]
-"  let g:syntastic_javascript_checkers= ["eslint"]
-"  let g:syntastic_go_checkers= ["golint"]
-"  let g:syntastic_sql_checkers= ["sqlint"]
-"  let g:syntastic_html_checkers=["eslint"]
-"  let g:syntastic_aggregate_errors = 1
-"  let g:syntastic_id_checkers = 0
-"endif
-
-" Ctrl P
-"if exists(":CtrlP")
-  nnoremap \p :CtrlP<CR>
-  nnoremap <Tab> :CtrlPMRUFiles<CR>
-  let g:ctrlp_custom_ignore = {
-     \ 'dir':  '\v[\/]\.(git|hg|svn)$|.*/(target|node_modules|node|build)$',
-     \ 'file': '\v\.(exe|so|dll|class|jar|png|jpg|gif)$',
-     \ }
-     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-
-  let g:ctrlp_max_files=0
-  let g:ctrlp_max_depth=40
-  let g:ctrlp_show_hidden=1
-"endif
-
-" vim-go
-"if exists(":GoBuild")
-  map <C-n> :cnext<CR>
-  map <C-m> :cprevious<CR>
-  nnoremap <leader>a :cclose<CR>
-
- " goimports is a replacement for gofmt that adds/removes imports
- " automatically and then runs gofmt
-  let g:go_fmt_command = "goimports"
-  let g:go_def_mode='gopls'
-  "let g:go_info_mode='gopls'
-
- " run :GoBuild or :GoTestCompile based on the go file
-  function! s:build_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-      call go#test#Test(0,1)
-    elseif l:file =~# '^\f\+\.go$'
-      call go#cmd#Build(0)
-    endif
-  endfunction
-
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <leader>r <Plug>(go-run)
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <Leader>d :GoDocBrowser
-  autocmd FileType go nmap <Leader>f :GoTestFunc<CR>
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  "autocmd FileType go setlocal foldmethod=syntax
-
- " Automatically call :GoSameIds to match ids under your cursor
-  let g:go_auto_sameids = 1
-  let g:go_auto_type_info = 1
- " Set go-info delay time (ms)
-  set updatetime=100
-  let g:go_fmt_experimental = 1
-
- " Set all error lists to be quickfix
- " let g:go_list_type = 'quickfix'
- "
- " Set :GoTest timeout value
- " let g:go_test_timeout = '10s'
-
-  "let g:go_highlight_array_whitespace_error = 1
-  "let g:go_highlight_chan_whitespace_error = 1
-  "let g:go_highlight_space_tab_error = 1
-  "let g:go_highlight_trailing_whitespace_error = 1
-  "let g:go_highlight_build_constraints = 1
-  "let g:go_highlight_string_spellcheck = 1
-  let g:go_highlight_extra_types = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_functions = 1
-  let g:go_highlight_function_parameters = 1
-  let g:go_highlight_function_calls = 1
-  let g:go_highlight_types = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_generate_tags = 1
-  let g:go_highlight_format_strings = 1
-  let g:go_highlight_variable_declarations = 1
-  let g:go_highlight_variable_assignments = 1
-  let g:go_highlight_methods = 1
- "endif
-
-" yaml.vim
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/yaml.vim/colors/yaml.vim
-
-" rainbow.vim
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-
-" vim-terraform
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
-
-let g:gitgutter_git_args=""
+autocmd VimEnter * :call Plugins()
 
 "https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 " Here is (what should be a one-line) map to help you tell just what syntax
@@ -483,5 +507,3 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" vim-highlightedyank
-let g:highlightedyank_highlight_duration=150

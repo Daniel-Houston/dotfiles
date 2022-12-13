@@ -160,3 +160,7 @@ caf() {
 	seconds=$(expr 60 \* 60 \* $1)
 	caffeinate -t $seconds
 }
+
+fvim() {
+	vim $(fzf)
+}

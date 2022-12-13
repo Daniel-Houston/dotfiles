@@ -72,6 +72,16 @@ if [ ! -e $HOME/.oh-my-zsh/oh-my-zsh.sh ] ; then
   fi
 fi
 
+if [ ! -e $HOME/.fzf ] ; then
+  read -r -p "Install fzf? [y/n] " response
+  response=`echo $response | awk '{print tolower($0)}'`  #toLower
+  if [[ "$response" =~ ^(yes|y)$ ]] ; then
+	  # For some reason this only works if I use $(), not sure why
+	  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	  ~/.fzf/install
+  fi
+fi
+
 OS=`uname -s`
 OS=`echo $OS | awk '{print tolower($0)}'`  #toLower
 if [ -z `command -v go` ]; then
@@ -112,6 +122,6 @@ if [ "$OS" == "darwin" ]; then
 fi
 
 echo "Configuring git"
-git config push.default current
+git config --global push.default current
 
 echo "Finished setup"

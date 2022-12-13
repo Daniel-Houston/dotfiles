@@ -71,3 +71,6 @@ volume() {
 }
 
 export PATH=$PATH:/Users/dmhous/.toolbox/bin
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
