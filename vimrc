@@ -188,7 +188,6 @@ noremap <Leader>> :vertical resize +5<CR>
 noremap <Leader>< :vertical resize -5<CR>
 noremap <Leader>= <C-w>=
 
-syntax enable
 set t_Co=256
 set noexpandtab
 set tabstop=4
@@ -218,16 +217,17 @@ set noerrorbells
 nmap <silent> ,/ :nohlsearch<CR>
 
 imap jk <ESC>
-noremap <Leader>r :so $MYVIMRC<CR>
+noremap <Leader>x :so $MYVIMRC<CR>
 
 " BEGIN: Color Scheme Stuff
-set background=dark
 if (has("termguicolors"))
   set termguicolors
-  let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-  let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
+set background=dark
+syntax enable
 colorscheme tender
 let g:airline_theme = 'tender'
 
@@ -236,8 +236,8 @@ hi Comment ctermfg=Grey guifg=Grey
 hi Folded gui=bold cterm=bold ctermfg=White guifg=White
 hi Visual ctermfg=bg ctermbg=fg guifg=bg guibg=fg
 hi goBlock ctermfg=Cyan guifg=Cyan cterm=underline gui=underline
-" Cursorline
 
+" Cursorline
 hi clear CursorLine
 hi CursorLine cterm=underline gui=underline
 
@@ -415,7 +415,13 @@ function Plugins()
   
   " fzf
   if exists(":Files")
-    nnoremap <Leader>g :Files<CR>
+    nnoremap <Leader>p :GFiles<CR>
+	nnoremap <Leader>o :Files<CR>
+	nnoremap <Leader>f :Ag<CR>
+  endif
+
+  if exists(":Ranger")
+	nnoremap <Leader>r :Ranger<CR>
   endif
   
   " vim-go

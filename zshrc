@@ -150,6 +150,7 @@ fi
 #setopt PROMPT_SUBST ; PS1='${SKULL} > '
 #precmd () { __git_ps1 "%c" ":${SKULL} > " "|%s" }
 
+export TERM="screen-256color"
 
 # PATH fun!
 export PATH=$PATH:$HOME/.local/bin
@@ -159,9 +160,11 @@ export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
 
 # Go
 export GOPATH="$HOME/go"
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export GO111MODULE=on
+if [ -d $GOPATH ] ; then
+  export PATH=$PATH:/usr/local/go/bin
+  export PATH=$PATH:$(go env GOPATH)/bin
+  export GO111MODULE=on
+fi
 
 # npm installs
 export PATH=$PATH:$HOME/.npm-global/bin
@@ -230,6 +233,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+[ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
+
