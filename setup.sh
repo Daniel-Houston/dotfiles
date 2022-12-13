@@ -72,18 +72,45 @@ if [ ! -e $HOME/.oh-my-zsh/oh-my-zsh.sh ] ; then
   fi
 fi
 
-if [ ! -e $HOME/.fzf ] ; then
-  read -r -p "Install fzf? [y/n] " response
+if [ -z `command -v brew` ]; then
+  if [ -z `command -v brew` ]; then
+    read -r -p "Install homebrew? [y/n] " response
+    response=`echo $response | awk '{print tolower($0)}'`  #toLower
+    if [[ "$response" =~ ^(yes|y)$ ]] ; then
+	  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+  else 
+	  echo "Homebrew is installed"
+  fi
+
+fi
+
+if [ -z `command -v ag` ]; then
+  read -r -p "Install ag (the_silver_searcher) (requires homebrew)? [y/n] " response
+  response=`echo $response | awk '{print tolower($0)}'`  #toLower
+  if [[ "$response" =~ ^(yes|y)$ ]] ; then
+    brew install the_silver_searcher
+  fi
+else
+  echo "ag is installed"
+fi
+
+
+if [ -z `command -v fzf` ]; then
+  read -r -p "Install fzf (required homebrew)? [y/n] " response
   response=`echo $response | awk '{print tolower($0)}'`  #toLower
   if [[ "$response" =~ ^(yes|y)$ ]] ; then
 	  # For some reason this only works if I use $(), not sure why
-	  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	  ~/.fzf/install
+	  brew install fzf
+	  sh -c "$(brew --prefix)/opt/fzf/install"
   fi
+else
+  echo "ag is installed"
 fi
 
 OS=`uname -s`
 OS=`echo $OS | awk '{print tolower($0)}'`  #toLower
+
 if [ -z `command -v go` ]; then
   read -r -p "Install golang and tools? [y/n] " response
   response=`echo $response | awk '{print tolower($0)}'`  #toLower
@@ -96,29 +123,8 @@ else
 fi
 
 if [ "$OS" == "darwin" ]; then
-  if [ -z `command -v brew` ]; then
-    read -r -p "Install homebrew? [y/n] " response
-    response=`echo $response | awk '{print tolower($0)}'`  #toLower
-    if [[ "$response" =~ ^(yes|y)$ ]] ; then
-      /usr/bin/ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)`
-    fi
-  else 
-	  echo "Homebrew is installed"
-  fi
-
-  if [ -z `command -v ag` ]; then
-    read -r -p "Install ag (the_silver_searcher) (requires homebrew)? [y/n] " response
-    response=`echo $response | awk '{print tolower($0)}'`  #toLower
-    if [[ "$response" =~ ^(yes|y)$ ]] ; then
-  	  brew install the_silver_searcher
-    fi
-  else 
-	  echo "ag is installed"
-  fi
-
   # focus follows mouse. See https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
   defaults write com.apple.x11 wm_ffm -bool true
-
 fi
 
 echo "Configuring git"
