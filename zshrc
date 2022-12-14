@@ -22,7 +22,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -37,7 +37,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -76,7 +76,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -155,9 +155,6 @@ export TERM="screen-256color"
 # PATH fun!
 export PATH=$PATH:$HOME/.local/bin
 
-# Maven
-export PATH=$PATH:/usr/local/apache-maven-3.5.2/bin
-
 # Go
 export GOPATH="$HOME/go"
 if [ -d $GOPATH ] ; then
@@ -195,7 +192,6 @@ bindkey '^R' history-incremental-search-backward
 # [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
 # [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
-
 # Turn off ctrl+s ctrl+q for terminal. This helps vim stuff
 stty -ixon
 
@@ -211,22 +207,15 @@ volume() {
 	fi
 }
 
-# Google Cloud SDK
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+getOS() {
+	OS=`uname -s`
+	OS=`echo $OS | awk '{print tolower($0)}'`  #toLower
+	echo $OS
+}
 
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
-export PATH=$PATH:$HOME/google-cloud-sdk-bin
-
-OS=`uname -s`
-OS=`echo $OS | awk '{print tolower($0)}'`  #toLower
-if [ "$OS" = "darwin" ]; then
+if [ "$(getOS)" = "darwin" ]; then
 	ulimit -n 1024
 fi
-
-export PATH=$PATH:/Users/dmhous/.toolbox/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -237,5 +226,6 @@ if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+#fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
