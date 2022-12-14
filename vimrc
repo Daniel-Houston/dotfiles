@@ -418,6 +418,7 @@ function Plugins()
     nnoremap <Leader>p :GFiles<CR>
 	nnoremap <Leader>o :Files<CR>
 	nnoremap <Leader>f :Ag<CR>
+    nnoremap <Tab> :Buffers<CR>
   endif
 
   if exists(":Ranger")
