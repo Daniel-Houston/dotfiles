@@ -1,6 +1,8 @@
 # oh-my-zsh junk
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+starttime=$(date +%d.%m.%y-%H:%M:%S)
+echo "Starting zshrc $starttime"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -114,9 +116,12 @@ setopt COMPLETE_ALIASES
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-unsetopt autocd
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
+# This needs to be set before sourcing the other files
+setopt auto_cd
+export CDPATH=$HOME
 
 # My Own added lines
 if [ -f ~/.workrc ]; then
@@ -150,7 +155,11 @@ fi
 #setopt PROMPT_SUBST ; PS1='${SKULL} > '
 #precmd () { __git_ps1 "%c" ":${SKULL} > " "|%s" }
 
-export TERM="screen-256color"
+# Setting this to screen-256color causes duplicate
+# commands to be printed on newline (see https://github.com/ohmyzsh/ohmyzsh/issues/9282)
+#
+# However, this doesn't always play well with tmux.
+export TERM="xterm-256color"
 
 # PATH fun!
 export PATH=$PATH:$HOME/.local/bin
@@ -167,8 +176,8 @@ fi
 export PATH=$PATH:$HOME/.npm-global/bin
 
 # Add python executables from default python on mac
-export PATH=$PATH:/Users/dmhous/Library/Python/3.9/bin
-export PATH=$PATH:/Users/dmhous/Library/Python/3.8/bin
+# export PATH=$PATH:/Users/dmhous/Library/Python/3.9/bin
+# export PATH=$PATH:/Users/dmhous/Library/Python/3.8/bin
 
 
 # Intellij Idea
@@ -228,4 +237,28 @@ fi
 
 #fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
+#direnv
+eval "$(direnv hook zsh)"
 
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+endtime=$(date +%d.%m.%y-%H:%M:%S)
+echo "Finished zshrc $endtime"

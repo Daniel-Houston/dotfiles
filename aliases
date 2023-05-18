@@ -164,3 +164,6 @@ caf() {
 fvim() {
 	vim $(fzf)
 }
+
+alias gradlew="./gradlew"
+alias gw="./gradlew"

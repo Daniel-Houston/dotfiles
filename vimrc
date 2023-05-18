@@ -189,7 +189,7 @@ noremap <Leader>< :vertical resize -5<CR>
 noremap <Leader>= <C-w>=
 
 set t_Co=256
-set noexpandtab
+set expandtab
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
@@ -211,6 +211,9 @@ set history=1000 "Increase Undo History
 set lazyredraw " Don't redraw during macros
 set foldnestmax=1
 set shortmess-=S " Show count on searches
+" Fix for slow typescript syntax highlighting
+" https://jameschambers.co.uk/vim-typescript-slow
+set re=0
 
 set noerrorbells
 
