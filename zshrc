@@ -1,3 +1,4 @@
+#set -o xtrace
 # oh-my-zsh junk
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -124,16 +125,18 @@ setopt auto_cd
 export CDPATH=$HOME
 
 # My Own added lines
+# Aliases should be before workrc 
+# so workrc can override aliases
+if [ -f ~/.aliases ]; then
+  . ~/.aliases
+fi
+
 if [ -f ~/.workrc ]; then
   . ~/.workrc
 fi
 
 if [ -f ~/.privaterc ]; then
   . ~/.privaterc
-fi
-
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
 fi
 
 if [ -f ~/.dots_location ]; then
@@ -227,9 +230,10 @@ if [ "$(getOS)" = "darwin" ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+alias nvm='unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; nvm $@'
 
 if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -257,8 +261,8 @@ load-nvmrc() {
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
 
 endtime=$(date +%d.%m.%y-%H:%M:%S)
 echo "Finished zshrc $endtime"

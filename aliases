@@ -111,6 +111,8 @@ alias src-grep=searchForText
 # Changing behavior of cd
 function cd
 {
+    # run cdpath once on first cd so that it doesn't slow down shell load time
+    [ "$(type doCdPath)" = 'alias' ] && doCdPath && echo 'ran cd path'
     # This will pass all the arguments on the
     # command line (the "$@") to the 'cd' builtin,
     # and then execute an 'ls' on the current directory
