@@ -230,10 +230,6 @@ if [ "$(getOS)" = "darwin" ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-alias nvm='unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; nvm $@'
 
 if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -241,28 +237,9 @@ fi
 
 #fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
-#direnv
-eval "$(direnv hook zsh)"
-
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-#add-zsh-hook chpwd load-nvmrc
-#load-nvmrc
 
 endtime=$(date +%d.%m.%y-%H:%M:%S)
 echo "Finished zshrc $endtime"
+
+# rbenv
+eval "$(rbenv init - zsh)"

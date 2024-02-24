@@ -20,14 +20,14 @@ if [ -f $CWD/privaterc ] ; then
 fi
 
 if [ -d $HOME/.config/i3  ] ; then
-  ln -is $CWD/i3config $HOME/.config/i3/config 
+  ln -is $CWD/i3config $HOME/.config/i3/config
 fi
 # Setup dots alias
 if [ ! -f $CWD/dots_location ] ; then
 	touch dots_location
-	
+
 fi
-echo "alias dots='cd "$CWD"'" > dots_location 
+echo "alias dots='cd "$CWD"'" > dots_location
 ln -is $CWD/dots_location $HOME/.dots_location
 
 # Set up vundle
@@ -123,6 +123,26 @@ else
 fi
 
 if [ "$OS" == "darwin" ]; then
+  if [ -z `command -v brew` ]; then
+    read -r -p "Install homebrew? [y/n] " response
+    response=`echo $response | awk '{print tolower($0)}'`  #toLower
+    if [[ "$response" =~ ^(yes|y)$ ]] ; then
+      /usr/bin/ruby -e `curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)`
+    fi
+  else
+	  echo "Homebrew is installed"
+  fi
+
+  if [ -z `command -v ag` ]; then
+    read -r -p "Install ag (the_silver_searcher) (requires homebrew)? [y/n] " response
+    response=`echo $response | awk '{print tolower($0)}'`  #toLower
+    if [[ "$response" =~ ^(yes|y)$ ]] ; then
+  	  brew install the_silver_searcher
+    fi
+  else
+	  echo "ag is installed"
+  fi
+
   # focus follows mouse. See https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
   defaults write com.apple.x11 wm_ffm -bool true
 fi

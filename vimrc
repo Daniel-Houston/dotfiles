@@ -148,6 +148,8 @@ if isdirectory($HOME . '/.vim/bundle/Vundle.vim')
   " Easy Motion
   Plugin 'easymotion/vim-easymotion'
 
+  Plugin 'vim-javascript'
+
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
@@ -189,9 +191,11 @@ noremap <Leader>< :vertical resize -5<CR>
 noremap <Leader>= <C-w>=
 
 set t_Co=256
+" use tabs for tabs
+"set noexpandtab
 set expandtab
 set tabstop=4
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set smarttab
 set smartindent
