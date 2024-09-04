@@ -230,13 +230,15 @@ if [ "$(getOS)" = "darwin" ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-
 if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 #fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
+eval "$(mise activate zsh)"
+
+autoload -U add-zsh-hook
 
 endtime=$(date +%d.%m.%y-%H:%M:%S)
 echo "Finished zshrc $endtime"
