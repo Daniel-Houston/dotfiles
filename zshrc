@@ -236,7 +236,6 @@ fi
 
 #fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
-eval "$(mise activate zsh)"
 
 autoload -U add-zsh-hook
 
@@ -245,3 +244,7 @@ echo "Finished zshrc $endtime"
 
 # rbenv
 eval "$(rbenv init - zsh)"
+
+#mise https://github.com/jdx/mise
+eval "$(~/.local/bin/mise activate zsh)"
+#eval "$(mise activate zsh)"
