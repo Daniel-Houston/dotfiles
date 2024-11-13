@@ -142,6 +142,15 @@ if [ "$OS" == "darwin" ]; then
   else
 	  echo "ag is installed"
   fi
+  if [ -z `command -v mise` ]; then
+    read -r -p "Install mise (requires homebrew)? [y/n] " response
+    response=`echo $response | awk '{print tolower($0)}'`  #toLower
+    if [[ "$response" =~ ^(yes|y)$ ]] ; then
+      brew install mise
+    fi
+  else
+    echo "mise is installed"
+  fi
 
   # focus follows mouse. See https://stackoverflow.com/questions/98310/focus-follows-mouse-plus-auto-raise-on-mac-os-x
   defaults write com.apple.x11 wm_ffm -bool true

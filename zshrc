@@ -234,6 +234,10 @@ if [ -d '/home/linuxbrew/.linuxbrew/bin' ] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+if [ -d '/opt/homebrew/bin' ] ; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 #fzf
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
@@ -242,9 +246,8 @@ autoload -U add-zsh-hook
 endtime=$(date +%d.%m.%y-%H:%M:%S)
 echo "Finished zshrc $endtime"
 
-# rbenv
-eval "$(rbenv init - zsh)"
 
 #mise https://github.com/jdx/mise
-eval "$(~/.local/bin/mise activate zsh)"
-#eval "$(mise activate zsh)"
+if [ -f '/opt/homebrew/bin/mise' ] ; then
+    eval "$(/opt/homebrew/bin/mise activate zsh)"
+fi
