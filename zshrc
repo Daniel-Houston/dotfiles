@@ -243,11 +243,15 @@ fi
 
 autoload -U add-zsh-hook
 
-endtime=$(date +%d.%m.%y-%H:%M:%S)
-echo "Finished zshrc $endtime"
-
-
-#mise https://github.com/jdx/mise
+# mise https://github.com/jdx/mise
 if [ -f '/opt/homebrew/bin/mise' ] ; then
     eval "$(/opt/homebrew/bin/mise activate zsh)"
 fi
+# non-homebrew mise
+if [ -f '$HOME/.local/bin/mise' ] ; then
+    eval "$(/home/d250218/.local/bin/mise activate zsh)"
+fi
+
+endtime=$(date +%d.%m.%y-%H:%M:%S)
+echo "Finished zshrc $endtime"
+

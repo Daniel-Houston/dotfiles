@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # backticks are the platform-agnostic way to run commands
 CWD=`pwd`
@@ -30,7 +30,7 @@ echo "alias dots='cd "$CWD"'" > dots_location
 ln -is $CWD/dots_location $HOME/.dots_location
 
 # Set up vundle
-if [ ! -d $HOME/.vim/bundle/Vundle.vim ] ; then
+if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]] ; then
   read -r -p "Download Vundle for vim? [y/n]" response
   response=`echo $response | awk '{print tolower($0)}'`  #toLower
   if [[ "$response" =~ ^(yes|y)$ ]] ; then
