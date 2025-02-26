@@ -1,0 +1,27 @@
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto
+[commit]
+    verbose = true
+[core]
+	pager = less
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[fetch]
+    prune = true
+    all = true
+[help]
+    autocorrect = prompt
+[push]
+	default = simple
+    autoSetupRemote = true
+[user]
+	email = dhouston@incyte.com
+	name = Dan Houston

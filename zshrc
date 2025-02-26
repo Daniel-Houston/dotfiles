@@ -248,7 +248,7 @@ if [ -f '/opt/homebrew/bin/mise' ] ; then
     eval "$(/opt/homebrew/bin/mise activate zsh)"
 fi
 # non-homebrew mise
-if [ -f '$HOME/.local/bin/mise' ] ; then
+if [ -f "$HOME/.local/bin/mise" ] ; then
     eval "$(/home/d250218/.local/bin/mise activate zsh)"
 fi
 
