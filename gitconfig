@@ -6,9 +6,6 @@
     verbose = true
 [core]
 	pager = less
-[credential]
-	helper = !aws codecommit credential-helper $@
-	UseHttpPath = true
 [diff]
     algorithm = histogram
     colorMoved = plain
@@ -22,6 +19,7 @@
 [push]
 	default = simple
     autoSetupRemote = true
-[user]
-	email = dhouston@incyte.com
-	name = Dan Houston
+
+# Work Settings
+[include]
+    path = ~/.gitconfig-work
