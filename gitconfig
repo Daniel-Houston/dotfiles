@@ -1,25 +1,25 @@
 [branch]
-    sort = -committerdate
+	sort = -committerdate
 [column]
-    ui = auto
+	ui = auto
 [commit]
-    verbose = true
+	verbose = true
 [core]
 	pager = less
 [diff]
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [fetch]
-    prune = true
-    all = true
+	prune = true
+	all = true
 [help]
-    autocorrect = prompt
+	autocorrect = prompt
 [push]
 	default = simple
-    autoSetupRemote = true
+	autoSetupRemote = true
 
 # Work Settings
 [include]
-    path = ~/.gitconfig-work
+	path = ~/.gitconfig-work
