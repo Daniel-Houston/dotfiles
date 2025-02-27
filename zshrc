@@ -249,7 +249,7 @@ if [ -f '/opt/homebrew/bin/mise' ] ; then
 fi
 # non-homebrew mise
 if [ -f "$HOME/.local/bin/mise" ] ; then
-    eval "$(/home/d250218/.local/bin/mise activate zsh)"
+    eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
 endtime=$(date +%d.%m.%y-%H:%M:%S)
